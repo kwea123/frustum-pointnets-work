@@ -147,6 +147,7 @@ def get_instance_seg_v1_net_modified(point_cloud, one_hot_vec,
     global_feat = tf.concat([global_feat, tf.expand_dims(tf.expand_dims(one_hot_vec, 1), 1)], axis=3)
     global_feat_expand = tf.tile(global_feat, [1, num_point, 1, 1])
     # concat_feat = tf.concat(axis=3, values=[c3, global_feat_expand])
+    global_feat_expand = tf.concat(axis=3, values=[c5, global_feat_expand])
 
     d1 = tf_util.conv2d(global_feat_expand, 512, [1,1],
                          padding='VALID', stride=[1,1],
